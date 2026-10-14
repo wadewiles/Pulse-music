@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080812">
+  <title>Pulse — Music Player</title>
+  <link rel="stylesheet" href="style.css">
+  
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="./icon-192.png">
+<meta name="theme-color" content="#080812">
+
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+  <div class="ambient ambient-three"></div>
+
+  <main class="app">
+    <header class="topbar">
+      <a class="brand" href="#">
+        <span class="brand-icon">ϟ</span>
+        PULSE<span class="brand-dot">.</span>
+      </a>
+      <span class="local-label">
+        <span class="live-dot"></span> YOUR MUSIC SPACE
+      </span>
+    </header>
+
+    <section class="hero">
+      <p class="eyebrow">FEEL EVERY FREQUENCY</p>
+      <h1>Music that <span>moves you.</span></h1>
+      <p class="subtitle">
+        Your music. Your colors. Your moment.
+      </p>
+    </section>
+
+    <section class="player-card">
+      <div class="visualizer-wrap">
+        <canvas id="visualizer"></canvas>
+        <div class="orb" id="orb">
+          <div class="orb-inner">
+            <span class="orb-symbol">ϟ</span>
+            <span class="orb-caption">PULSE</span>
+          </div>
+        </div>
+        <span class="visualizer-tag">LIVE AUDIO REACTIVE</span>
+      </div>
+
+      <div class="track-info">
+        <div class="track-text">
+          <p class="eyebrow">NOW PLAYING</p>
+          <h2 id="trackTitle">Choose your first song</h2>
+          <p id="trackArtist">Your local music library</p>
+        </div>
+        <button id="pickButton" class="pick-button">
+          <span>＋</span> Add music
+        </button>
+        <input
+          id="fileInput"
+          type="file"
+          accept="audio/*,.mp3,.wav,.ogg,.m4a,.aac,.flac"
+          multiple
+          hidden
+        >
+      </div>
+
+      <div class="progress-area">
+        <input id="seekBar" class="seek-bar" type="range"
+          min="0" max="1000" value="0" aria-label="Seek through song">
+        <div class="time-row">
+          <span id="currentTime">0:00</span>
+          <span id="duration">0:00</span>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="shuffleButton" class="icon-button" title="Shuffle"
+          aria-label="Shuffle">⤨</button>
+        <button id="previousButton" class="icon-button"
+          title="Previous song" aria-label="Previous song">◀|</button>
+        <button id="playButton" class="play-button"
+          aria-label="Play">▶</button>
+        <button id="nextButton" class="icon-button"
+          title="Next song" aria-label="Next song">|▶</button>
+        <button id="repeatButton" class="icon-button"
+          title="Repeat" aria-label="Repeat">↻</button>
+      </div>
+
+      <div class="volume-row">
+        <span class="volume-icon">♫</span>
+        <input id="volumeBar" type="range" min="0" max="100"
+          value="80" aria-label="Volume">
+        <span id="volumeLabel">80%</span>
+      </div>
+
+      <div class="settings">
+        <div class="setting-block">
+          <label for="crossfadeRange">
+            <span>CROSSFADE</span>
+            <strong id="crossfadeLabel">3.0 sec</strong>
+          </label>
+          <input id="crossfadeRange" type="range" min="0" max="8"
+            step="0.5" value="3">
+          <p>How smoothly songs blend into each other</p>
+        </div>
+        <div class="setting-block">
+          <label for="visualizerRange">
+            <span>RGB INTENSITY</span>
+            <strong id="visualizerLabel">70%</strong>
+          </label>
+          <input id="visualizerRange" type="range" min="0" max="100"
+            value="70">
+          <p>Control the glow of your music environment</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="library-section">
+      <div class="library-heading">
+        <div>
+          <p class="eyebrow">YOUR COLLECTION</p>
+          <h2>Music library <span id="songCount">(0)</span></h2>
+        </div>
+        <button id="clearButton" class="text-button">Clear library</button>
+      </div>
+
+      <div id="emptyState" class="empty-state">
+        <div class="empty-icon">♫</div>
+        <h3>Your next favorite is waiting.</h3>
+        <p>Select music from your device to start building your playlist.</p>
+        <button id="emptyPickButton" class="pick-button">
+          Choose songs
+        </button>
+      </div>
+
+      <div id="playlist" class="playlist"></div>
+    </section>
+
+    <footer>
+      <span>MADE FOR THE LOVE OF MUSIC</span>
+      <span>PULSE <span class="brand-dot">●</span></span>
+    </footer>
+  </main>
+
+  <div id="toast" class="toast" role="status"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
